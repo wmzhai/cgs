@@ -1,0 +1,22 @@
+{
+  "name": "cgs",
+  "version": "0.0.1",
+  "description": "Create GraphQL Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmzhai/cgs.git"
+  },
+  "keywords": [
+    "GraphQL"
+  ],
+  "author": "Weiming Zhai <wmzhai@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wmzhai/cgs/issues"
+  },
+  "homepage": "https://github.com/wmzhai/cgs#readme"
+}
