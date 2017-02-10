@@ -3,8 +3,7 @@
 # Local Install
 
 ```bash
-$ git clone https://github.com/wmzhai/cgs.git
-$ cd cgs
+$ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
 $ yarn run i
 $ cgs
