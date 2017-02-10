@@ -2,8 +2,8 @@
 
 'use strict';
 
-const chalk = require('chalk');
-const lib= require('./lib/index.js');
+var chalk = require('chalk');
+var lib = require('./lib/index.js');
 
 //Check Nodejs Version
 var currentNodeVersion = process.versions.node
@@ -19,7 +19,6 @@ if (currentNodeVersion.split('.')[0] < 4) {
 }
 
 var commander = require('commander');
-
 var projectName;
 
 var program = commander
@@ -44,6 +43,4 @@ if (typeof projectName === 'undefined') {
     process.exit(1);
 }
 
-
-let greeting = lib.sayHello(projectName);
-console.log(chalk.green(greeting));
+lib.createGraphQLServer(projectName,program.verbose);
