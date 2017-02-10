@@ -1,11 +1,12 @@
 {
   "name": "cgs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create GraphQL Server",
   "bin": {
     "cgs": "bin/index.js"
   },
   "scripts": {
+    "i": "npm -g i .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/wmzhai/cgs/issues"
   },
-  "homepage": "https://github.com/wmzhai/cgs#readme"
+  "homepage": "https://github.com/wmzhai/cgs#readme",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
 }
