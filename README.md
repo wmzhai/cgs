@@ -5,6 +5,7 @@
 ```bash
 $ git clone https://github.com/wmzhai/cgs.git
 $ cd cgs
-$ npm -g i .
+$ yarn install
+$ yarn run i
 $ cgs
 ```
