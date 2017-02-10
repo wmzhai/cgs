@@ -1,10 +1,21 @@
 # Create GraphQL Server Tool
 
-# Local Install
+## Run
 
 ```bash
 $ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
-$ yarn run i
-$ cgs
+$ npm -g i .
+```
+
+## Install
+ 
+```bash
+$ npm i -g cgs
+```
+
+## Usage
+
+```bash
+$ cgs <project-directory>
 ```
