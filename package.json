@@ -2,7 +2,9 @@
   "name": "cgs",
   "version": "0.0.1",
   "description": "Create GraphQL Server",
-  "main": "index.js",
+  "bin": {
+    "cgs": "bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
