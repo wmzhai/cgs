@@ -3,7 +3,7 @@
 'use strict';
 
 var chalk = require('chalk');
-var lib = require('./lib/index.js');
+var cgs = require('./src/index.js');
 
 //Check Nodejs Version
 var currentNodeVersion = process.versions.node
@@ -43,4 +43,4 @@ if (typeof projectName === 'undefined') {
     process.exit(1);
 }
 
-lib.createGraphQLServer(projectName,program.verbose);
+cgs.createGraphQLServer(projectName,program.verbose);
