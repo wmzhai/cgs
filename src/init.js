@@ -30,10 +30,55 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
     return;
   }
 
-
-  // install packages
   var command;
   var args;
+
+  //devDependencies
+  console.log('Installing devDependencies using ' + command + '...');
+  console.log('');
+  if (useYarn) {
+    command = 'yarnpkg';
+    args = [ 'add', '--dev', '--exact', packageToInstall];
+  } else {
+    command = 'npm';
+    args = [
+      'install',
+      '--save-dev',
+      '--save-exact',
+      verbose && '--verbose'
+    ].filter(function(e) { return e; });
+  }
+  args.push('babel-cli', 
+            'babel-core',
+            'babel-eslint',
+            'babel-loader',
+            'babel-preset-es2015',
+            'babel-preset-react',
+            'babel-preset-stage-2',
+            'babel-register',
+            'chai',
+            'eslint',
+            'eslint-config-react-app',
+            'eslint-plugin-babel',
+            'eslint-plugin-flowtype',
+            'eslint-plugin-import',
+            'eslint-plugin-jsx-a11y',
+            'eslint-plugin-react',
+            'mocha',
+            'node-fetch',
+            'nodemon');
+            
+  var proc = spawn(command, args, {stdio: 'inherit'});
+  proc.on('close', function (code) {
+    if (code !== 0) {
+      console.error('`' + command + ' ' + args.join(' ') + '` failed');
+      return;
+    }
+  });            
+
+  // dependencies
+  console.log('Installing dependencies using ' + command + '...');
+  console.log('');
 
   if (useYarn) {
     command = 'yarnpkg';
@@ -46,10 +91,21 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
       verbose && '--verbose'
     ].filter(function(e) { return e; });
   }
-  args.push('express', 'graphql');
+  args.push('express', 
+            'express-session', 
+            'body-parser', 
+            'cors', 
+            'lodash', 
+            'graphql', 
+            'graphql-tools', 
+            'graphql-server-express',
+            'mongodb', 
+            'mongo-find-by-ids',
+            'dataloader',
+            'dotenv', 
+            'request-promise');
 
-  console.log('Installing express and graphql using ' + command + '...');
-  console.log('');
+ 
 
   var proc = spawn(command, args, {stdio: 'inherit'});
   proc.on('close', function (code) {
@@ -84,6 +140,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
     console.log('Happy hacking!');
   });
 }
+
 
 function shouldUseYarn() {
   try {
