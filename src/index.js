@@ -1,6 +1,7 @@
 var chalk = require('chalk');
 var fs = require('fs-extra');
 var path = require('path');
+var init = require('./init');
 
 function createGraphQLServer(name, verbose) {
     var root = path.resolve(name); //Full path
@@ -24,7 +25,7 @@ function createGraphQLServer(name, verbose) {
 
     var packageJson = {
         name: appName,
-        version: '0.0.1',
+        version: '0.1.0',
         private: true,
     };
     fs.writeFileSync(
@@ -32,7 +33,10 @@ function createGraphQLServer(name, verbose) {
         JSON.stringify(packageJson, null, 2)
     );
 
+    var originalDirectory = process.cwd();
+    process.chdir(root);
 
+    init(root,appName,verbose,originalDirectory);
 }
 
 
