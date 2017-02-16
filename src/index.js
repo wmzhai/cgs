@@ -2,6 +2,7 @@ var chalk = require('chalk');
 var fs = require('fs-extra');
 var path = require('path');
 var init = require('./init');
+require('babel-register');
 
 function createGraphQLServer(name, verbose) {
     var root = path.resolve(name); //Full path
