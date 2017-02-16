@@ -18,7 +18,6 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
 
   // Copy the files for the user
   var templatePath = path.join(__dirname, '..', 'template');
-  console.log('templatePath: ' + templatePath );
   if (fs.existsSync(templatePath)) {
     fs.copySync(templatePath, appPath);
   } else {
@@ -28,8 +27,6 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
 
   install(installDependencies);
 }
-
-
 
 function install(callback) {
   var command;

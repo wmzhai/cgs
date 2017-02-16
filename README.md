@@ -1,9 +1,10 @@
-# Create GraphQL Server Tool
+# Create GraphQL Server
 
 
 ## Install
  
 ```bash
+$ brew install yarn
 $ npm i -g cgs
 ```
 
@@ -20,7 +21,3 @@ $ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
 $ npm -g i .
 ```
-
-## ROADMAP
-
-* v0.2.0 add-type with schema file
