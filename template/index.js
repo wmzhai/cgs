@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
+import { printSchema } from 'graphql/utilities/schemaPrinter';
 
 import typeDefs from './schema';
 import resolvers from './resolvers';
@@ -13,7 +14,7 @@ import addModelsToContext from './model';
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 const {
-  PORT = 3000,
+  GRAPHQL_PORT = 3000,
   MONGO_URL = `mongodb://localhost:27017/database`,
 } = process.env;
 
@@ -28,8 +29,6 @@ async function startServer() {
   app.use('/graphql', graphqlExpress((req) => {
     const query = req.query.query || req.body.query;
     if (query && query.length > 2000) {
-      // None of our app's queries are this long
-      // Probably indicates someone trying to send an overly expensive query
       throw new Error('Query too large.');
     }
 
@@ -45,8 +44,13 @@ async function startServer() {
     endpointURL: '/graphql',
   }));
 
-  app.listen(PORT, () => console.log(
-    `GraphQL server launched, visit http://localhost:${PORT}/graphiql`
+  app.use('/schema', (req, res) => {
+    res.set('Content-Type', 'text/plain');
+    res.send(printSchema(schema));
+  });
+
+  app.listen(GRAPHQL_PORT, () => console.log(
+    `GraphQL server launched, visit http://localhost:${GRAPHQL_PORT}/graphiql`
   ));
 }
 

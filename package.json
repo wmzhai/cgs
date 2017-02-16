@@ -1,6 +1,6 @@
 {
   "name": "cgs",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Create GraphQL Server",
   "bin": {
     "cgs": "./index.js"

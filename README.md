@@ -23,5 +23,4 @@ $ npm -g i .
 
 ## ROADMAP
 
-* v0.1.0 generate skeleton server
 * v0.2.0 add-type with schema file

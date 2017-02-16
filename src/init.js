@@ -71,13 +71,17 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
 
 async function installDevDependencies() {
   var args = ['add', '--dev'];
-  args.push('babel-cli',
+  args.push(
+    'babel-cli',
     'babel-core',
     'babel-eslint',
     'babel-loader',
+    'babel-plugin-inline-import',
+    'babel-polyfill',
     'babel-preset-es2015',
+    'babel-preset-es2017',
     'babel-preset-react',
-    'babel-preset-stage-2',
+    'babel-preset-stage-0',
     'babel-register',
     'chai',
     'eslint',
@@ -98,7 +102,8 @@ async function installDevDependencies() {
 
 async function installDependencies() {
   var args = ['add'];
-  args.push('express',
+  args.push(
+    'express',
     'express-session',
     'body-parser',
     'cors',
