@@ -4,6 +4,7 @@
 
 var chalk = require('chalk');
 var cgs = require('./src/index.js');
+var minimist = require('minimist');
 
 //Check Nodejs Version
 var currentNodeVersion = process.versions.node
@@ -43,4 +44,30 @@ if (typeof projectName === 'undefined') {
     process.exit(1);
 }
 
-cgs.createGraphQLServer(projectName,program.verbose);
+
+function usage() {
+    console.log('Usage: cgs <command> <arg>, where command is:');
+    console.log(' - cgs init projectName');
+    console.log(' - cgs add path/to/type.graphql');
+    process.exit(1);
+}
+
+
+const argv = minimist(process.argv.slice(2));
+
+const commands = argv._;
+console.log('commands: ' + commands);
+
+if (commands[0] === 'init') {
+    const projectName = commands[1];
+    if (!projectName) {
+        usage();
+    }
+
+    cgs.createGraphQLServer(projectName);
+} else if (commands[0] === 'add') {
+
+} else {
+    usage();
+}
+

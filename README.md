@@ -10,8 +10,9 @@ $ npm i -g cgs
 
 ## Usage
 
+### Init Project
 ```bash
-$ cgs <project-directory>
+$ cgs init <project-directory>
 ```
 
 ## Develop

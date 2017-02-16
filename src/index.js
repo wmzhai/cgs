@@ -2,9 +2,8 @@ var chalk = require('chalk');
 var fs = require('fs-extra');
 var path = require('path');
 var init = require('./init');
-require('babel-register');
 
-function createGraphQLServer(name, verbose) {
+function createGraphQLServer(name) {
     var root = path.resolve(name); //Full path
     var appName = path.basename(root); //last name in path string
 
@@ -37,7 +36,7 @@ function createGraphQLServer(name, verbose) {
     var originalDirectory = process.cwd();
     process.chdir(root);
 
-    init(root,appName,verbose,originalDirectory);
+    init(root,appName,originalDirectory);
 }
 
 
