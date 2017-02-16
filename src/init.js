@@ -4,6 +4,8 @@ var spawn = require('cross-spawn');
 var chalk = require('chalk');
 
 module.exports = function (name) {
+  console.log('init projct ' + name);
+
   var appPath = path.resolve(name); //Full path
   var appName = path.basename(appPath); //last name in path string
 

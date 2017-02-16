@@ -30,7 +30,12 @@ if (commands[0] === 'init') {
 
     cgs.init(projectName);
 } else if (commands[0] === 'add') {
-
+    const inputSchemaFile = commands[1];
+    if (!inputSchemaFile) {
+        usage();
+    }
+    
+    cgs.add(inputSchemaFile);
 } else {
     usage();
 }
