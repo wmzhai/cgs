@@ -34,9 +34,10 @@ if (commands[0] === 'init') {
     if (!inputSchemaFile) {
         usage();
     }
-    const {
-        outputSchemaStr
-    } = cgs.add(inputSchemaFile);
+    
+    cgs.add(inputSchemaFile);
+
+   
 
 } else {
     usage();

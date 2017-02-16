@@ -4,6 +4,7 @@ var spawn = require('cross-spawn');
 var chalk = require('chalk');
 var graphql = require('graphql');
 var generateSchema = require('./schema');
+var capitalization = require('./utils/capitalization');
 
 module.exports = function (inputSchemaFile) {
   console.log('add from inputSchemaFile ' + inputSchemaFile);
@@ -16,11 +17,17 @@ module.exports = function (inputSchemaFile) {
   console.log('type:' + type);
   const TypeName = type.name.value;
   console.log('TypeName:' + TypeName);
+  const typeName = capitalization.lcFirst(TypeName);
+  console.log('typeName:' + typeName);
 
   const outputSchema = generateSchema(inputSchema);
   const outputSchemaStr = graphql.print(outputSchema);
 
-  return {
-    outputSchemaStr
-  };
+  var outputSchemaPath = path.join('schema', `${typeName}.graphql`);
+  // console.log(outputSchemaPath);
+  // console.log(outputSchemaStr);
+
+
+  fs.writeFileSync(outputSchemaPath, outputSchemaStr);
+
 }
