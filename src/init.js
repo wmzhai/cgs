@@ -26,8 +26,7 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
     return;
   }
 
-
- // install(installDependencies);
+  install(installDependencies);
 }
 
 
