@@ -25,10 +25,11 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
     return;
   }
 
-  install(installDependencies);
+  console.log('Installing npm packages!');
+  install();
 }
 
-function install(callback) {
+function install() {
   var command;
   var args;
   command = 'yarn';
@@ -58,45 +59,7 @@ function install(callback) {
       'nodemon');
 
   var child = spawn(command, args, {stdio: 'inherit'});
-  child.on('close', function() {
-    callback();
-  });
-}
-
-
-
-
-
-
-function installDevDependencies() {
-  var args = ['add', '--dev'];
-  args.push(
-    'babel-cli',
-    'babel-core',
-    'babel-eslint',
-    'babel-loader',
-    'babel-plugin-inline-import',
-    'babel-polyfill',
-    'babel-preset-es2015',
-    'babel-preset-es2017',
-    'babel-preset-react',
-    'babel-preset-stage-0',
-    'babel-register',
-    'chai',
-    'eslint',
-    'eslint-config-react-app',
-    'eslint-plugin-babel',
-    'eslint-plugin-flowtype',
-    'eslint-plugin-import',
-    'eslint-plugin-jsx-a11y',
-    'eslint-plugin-react',
-    'mocha',
-    'node-fetch',
-    'nodemon');
-
-  var proc = spawn('yarn', args, {
-    stdio: 'inherit'
-  });
+  child.on('close', installDependencies);
 }
 
 function installDependencies() {
