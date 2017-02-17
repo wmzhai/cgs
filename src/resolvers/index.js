@@ -1,13 +1,15 @@
 var fs = require('fs');
-var recast = require('recast');
+var print = require('recast').print;
 var utils = require('../utils');
-
+var templateToAst = utils.templateToAst;
+var generatePerField = utils.generatePerField;
+var lcFirst = utils.lcFirst;
 
 module.exports = function (inputSchema) {
   console.log('generateResolver from inputSchema ' + inputSchema);
   const type = inputSchema.definitions[0];
   const TypeName = type.name.value;
-  const typeName = utils.lcFirst(TypeName);
+  const typeName = lcFirst(TypeName);
 
   const ast = generators.base({ TypeName, typeName });
 
@@ -17,7 +19,7 @@ module.exports = function (inputSchema) {
     .declarations[0].init // object expression
     .properties[0].value; // object value
 
-  utils.generatePerField(type, generators).forEach((resolverFunctionAst) => {
+  generatePerField(type, generators).forEach((resolverFunctionAst) => {
     const resolverProperty = resolverFunctionAst.program.body[0] // variable declaration
       .declarations[0].init // object expression
       .properties[0];
@@ -25,9 +27,8 @@ module.exports = function (inputSchema) {
     typeResolversAst.properties.push(resolverProperty);
   });
 
-  return recast.print(ast, { trailingComma: true }).code;
+  return print(ast, { trailingComma: true }).code;
 }
-
 
 function read(name) {
   return fs.readFileSync(`${__dirname}/templates/${name}.js`, 'utf8');
@@ -41,13 +42,13 @@ const templates = {
 
 function generateResolver(template) {
   return ({ TypeName, typeName, fieldName }) => {
-    return utils.templateToAst(template, { typeName, TypeName, fieldName });
+    return templateToAst(template, { typeName, TypeName, fieldName });
   };
 }
 
 const generators = {
   base({ typeName, TypeName }) {
-    return utils.templateToAst(templates.base, { typeName, TypeName });
+    return templateToAst(templates.base, { typeName, TypeName });
   },
   belongsTo: generateResolver(templates.fieldOfType),
   belongsToMany: generateResolver(templates.paginatedField),
