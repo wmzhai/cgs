@@ -6,7 +6,7 @@ var graphql = require('graphql');
 var generateSchema = require('./schema');
 var generateResolvers = require('./resolvers');
 var generateModel = require('./model');
-var capitalization = require('./utils/capitalization');
+var utils = require('./utils');
 
 module.exports = function (inputSchemaFile) {
   console.log('add from inputSchemaFile ' + inputSchemaFile);
@@ -19,7 +19,7 @@ module.exports = function (inputSchemaFile) {
   console.log('type:' + type);
   const TypeName = type.name.value;
   console.log('TypeName:' + TypeName);
-  const typeName = capitalization.lcFirst(TypeName);
+  const typeName = utils.lcFirst(TypeName);
   console.log('typeName:' + typeName);
 
   const outputSchema = generateSchema(inputSchema);
