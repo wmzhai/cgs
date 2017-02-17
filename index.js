@@ -45,7 +45,7 @@ if (commands[0] === 'init') {
 
 function usage() {
     console.log('Usage: cgs <command> <arg>, where command is:');
-    console.log(' - cgs init projectName');
-    console.log(' - cgs add path/to/type.graphql');
+    console.log(' -- cgs init projectName');
+    console.log(' -- cgs add path/to/type.graphql');
     process.exit(1);
 }

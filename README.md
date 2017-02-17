@@ -14,11 +14,15 @@ $ npm i -g cgs
 ```bash
 $ cgs init <project-directory>
 ```
+### Add Type
+```bash
+$ cgs add <path-to-schema.graphql>
+```
 
 ## Develop
 
 ```bash
 $ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
-$ npm -g i .
+$ npm link
 ```
