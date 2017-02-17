@@ -5,16 +5,13 @@ var cloneDeep = require('lodash.clonedeep');
 const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'ID'];
 
 module.exports = function (inputSchema) {
-  console.log('generateSchema from inputSchema ' + inputSchema);
   // Check that the input looks like we expect -- a single ObjectType definition
   assert(inputSchema.kind === 'Document');
   assert(inputSchema.definitions.length === 1);
 
   const outputSchema = cloneDeep(inputSchema);
-
   const type = outputSchema.definitions[0];
   const typeName = type.name.value;
-  console.log('type ' + type + typeName);
 
   const createInputFields = [];
   const updateInputFields = [];
@@ -103,9 +100,7 @@ module.exports = function (inputSchema) {
     ])
   ));
 
-  return outputSchema;
-
-
+  return graphql.print(outputSchema);
 }
 
 

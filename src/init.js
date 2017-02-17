@@ -36,7 +36,6 @@ module.exports = function (name) {
   var originalDirectory = process.cwd();
   process.chdir(appPath);
 
-  //init(appPath,appName,originalDirectory);
   var appPackage = require(path.join(appPath, 'package.json'));
 
   // Setup the script rules

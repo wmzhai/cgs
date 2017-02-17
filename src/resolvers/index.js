@@ -6,7 +6,6 @@ var generatePerField = utils.generatePerField;
 var lcFirst = utils.lcFirst;
 
 module.exports = function (inputSchema) {
-  console.log('generateResolver from inputSchema ' + inputSchema);
   const type = inputSchema.definitions[0];
   const TypeName = type.name.value;
   const typeName = lcFirst(TypeName);

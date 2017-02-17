@@ -6,8 +6,6 @@ var lcFirst = utils.lcFirst;
 var generatePerField = utils.generatePerField;
 
 module.exports = function (inputSchema) {
-  console.log('generateModel from inputSchema ' + inputSchema);
-
   const type = inputSchema.definitions[0];
   const TypeName = type.name.value;
   const typeName = lcFirst(TypeName);
