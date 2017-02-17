@@ -7,5 +7,5 @@ npm-debug.log
 /.changelog
 .vscode/
 .idea/
-/output
+output/
 /hello
