@@ -92,14 +92,6 @@ module.exports = function (inputSchema) {
     ])
   ));
 
-  outputSchema.definitions.push(buildTypeExtension(
-    buildTypeDefinition('Subscription', [
-      buildField(`${typeName.toLowerCase()}Created`, [], typeName),
-      buildField(`${typeName.toLowerCase()}Updated`, [], typeName),
-      buildField(`${typeName.toLowerCase()}Removed`, [], 'ObjID'),
-    ])
-  ));
-
   return graphql.print(outputSchema);
 }
 

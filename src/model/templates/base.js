@@ -5,7 +5,6 @@ export default class TypeName {
   constructor(context) {
     this.context = context;
     this.collection = context.db.collection('typeName');
-    this.pubsub = context.pubsub;
     this.loader = new DataLoader(ids => findByIds(this.collection, ids));
   }
 
@@ -25,7 +24,6 @@ export default class TypeName {
       updatedAt: Date.now(),
     });
     const id = (await this.collection.insertOne(docToInsert)).insertedId;
-    this.pubsub.publish('typeNameInserted', await this.findOneById(id));
     return id;
   }
 
@@ -36,14 +34,12 @@ export default class TypeName {
       }),
     });
     this.loader.clear(id);
-    this.pubsub.publish('typeNameUpdated', await this.findOneById(id));
     return ret;
   }
 
   async removeById(id) {
     const ret = this.collection.remove({ _id: id });
     this.loader.clear(id);
-    this.pubsub.publish('typeNameRemoved', id);
     return ret;
   }
 }

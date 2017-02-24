@@ -15,10 +15,6 @@ const typeDefs = [`
     # A placeholder, please ignore
     placeholder: Int
   }
-  type Subscription {
-    # A placeholder, please ignore
-    placeholder: Int
-  }
 `];
 
 export default typeDefs;
