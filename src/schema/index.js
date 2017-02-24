@@ -3,8 +3,7 @@ var graphql = require('graphql');
 var cloneDeep = require('lodash.clonedeep');
 var utils = require('../utils');
 var lcFirst = utils.lcFirst;
-
-const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'Boolean', 'ID'];
+var SCALAR_TYPE_NAMES = utils.SCALAR_TYPE_NAMES;
 
 module.exports = function (inputSchema) {
   // Check that the input looks like we expect -- a single ObjectType definition

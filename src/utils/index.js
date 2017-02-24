@@ -84,3 +84,4 @@ exports.getBaseType = getBaseType;
 exports.argumentsToObject = argumentsToObject;
 exports.isScalarField = isScalarField;
 exports.generatePerField = generatePerField;
+exports.SCALAR_TYPE_NAMES = SCALAR_TYPE_NAMES;
