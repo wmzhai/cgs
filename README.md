@@ -33,7 +33,8 @@ $ npm link
 ```
 
 
-## 编写Schema
+## Schema编写指南
 
 * 文件名小写开头驼峰形式文件，后缀为graphql
 * add type时会自动添加id, createdAt和updatedAt，所以在编写inputSchema时不需要添加
+* 字段名称小写开头
