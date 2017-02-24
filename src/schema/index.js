@@ -1,6 +1,8 @@
 var assert = require('assert');
 var graphql = require('graphql');
 var cloneDeep = require('lodash.clonedeep');
+var utils = require('../utils');
+var lcFirst = utils.lcFirst;
 
 const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'Boolean', 'ID'];
 
@@ -11,7 +13,8 @@ module.exports = function (inputSchema) {
 
   const outputSchema = cloneDeep(inputSchema);
   const type = outputSchema.definitions[0];
-  const typeName = type.name.value;
+  const TypeName = type.name.value;
+  const typeName = lcFirst(TypeName);
 
   const createInputFields = [];
   const updateInputFields = [];
@@ -59,18 +62,18 @@ module.exports = function (inputSchema) {
   type.fields.push(buildField('createdAt', [], 'Float!'));
   type.fields.push(buildField('updatedAt', [], 'Float!'));
 
-  const queryOneField = buildField(typeName.toLowerCase(), [idArgument()], typeName);
-  const queryAllField = buildField(`${typeName.toLowerCase()}s`, paginationArguments(), `[${typeName}!]`);
+  const queryOneField = buildField(typeName, [idArgument()], TypeName);
+  const queryAllField = buildField(`${typeName}s`, paginationArguments(), `[${TypeName}!]`);
   outputSchema.definitions.push(
     buildTypeExtension(buildTypeDefinition('Query', [queryAllField, queryOneField]))
   );
 
-  const createInputTypeName = `Create${typeName}Input`;
+  const createInputTypeName = `Create${TypeName}Input`;
   outputSchema.definitions.push(
     buildTypeDefinition(createInputTypeName, createInputFields, 'InputObjectTypeDefinition')
   );
 
-  const updateInputTypeName = `Update${typeName}Input`;
+  const updateInputTypeName = `Update${TypeName}Input`;
   outputSchema.definitions.push(
     buildTypeDefinition(updateInputTypeName, updateInputFields, 'InputObjectTypeDefinition')
   );
@@ -79,16 +82,16 @@ module.exports = function (inputSchema) {
 
   outputSchema.definitions.push(buildTypeExtension(
     buildTypeDefinition('Mutation', [
-      buildField(`create${typeName}`, [
+      buildField(`create${TypeName}`, [
         buildArgument('input', `${createInputTypeName}!`),
-      ], typeName),
+      ], TypeName),
 
-      buildField(`update${typeName}`, [
+      buildField(`update${TypeName}`, [
         idArgument(),
         buildArgument('input', `${updateInputTypeName}!`),
-      ], typeName),
+      ], TypeName),
 
-      buildField(`remove${typeName}`, [idArgument()], 'Boolean'),
+      buildField(`remove${TypeName}`, [idArgument()], 'Boolean'),
     ])
   ));
 
@@ -138,12 +141,12 @@ function buildTypeReference(name) {
   };
 }
 
-function buildField(name, args, typeName) {
+function buildField(name, args, TypeName) {
   return {
     kind: 'FieldDefinition',
     name: buildName(name),
     arguments: args,
-    type: buildTypeReference(typeName),
+    type: buildTypeReference(TypeName),
   };
 }
 
