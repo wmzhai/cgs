@@ -3,7 +3,8 @@ var graphql = require('graphql');
 var recast = require('recast');
 var babylon = require('babylon');
 
-const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'ID'];
+const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'Boolean', 'ID'];
+
 const babylonParser = {
   parse(code) {
     return babylon.parse(code, { sourceType: 'module' });
