@@ -1,5 +1,12 @@
 
 
+
+## 0.2.1 (February 24, 2017)
+
+* fix lowerCase bug, typename -> typeName
+* remove subscription realted code
+* fix Boolean ScalarType error
+
 ## 0.2.0 (February 17, 2017)
 
 * add type from inputSchema to project 
