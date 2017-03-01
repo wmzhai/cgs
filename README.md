@@ -42,7 +42,7 @@ $ npm link
 * add type时会自动添加id, createdAt和updatedAt，所以在编写inputSchema时不需要添加
 * 字段名称小写开头驼峰形式
 
-### 4.2 模型关系
+### 4.2 关联关系
 
 
 类型之间有相互引用关系，这里可以使用特定的关联语法来描述这种关系，并说明如何在mongodb里面生成相应的数据结构。
@@ -56,12 +56,11 @@ $ npm link
 
 **多关联字段 Paginated fields**
 
-字段引用其它类型的一个数组:
+字段引用其它类型的多个示例:
 
-- `@belongsToMany` - there is a list of foreign keys stored on this type as `${fieldName}Ids` [this is the default]
-- `@hasMany` - the foreign key is on the referenced type as `${typeName}Id`. Provide the `"as": X` argument if the name is different. (this is the reverse of `@belongsTo` in a 1-many situation).
-- `@hasAndBelongsToMany` - the foreign key on the referenced type as `${typeName}Ids`. Provide the `"as": X` argument if the name is different. (this is the reverse of `@belongsToMany` in a many-many situation).
-
+- `@belongsToMany` - 在这个类里保存了一个外键列表`${fieldName}Ids`（默认形式）
+- `@hasMany` - 外键以`${typeName}Id`形式保存在被引用类型里面。如果名称不一样，则使用`"as": X`参数来表示，这个和1对多的`@belongsTo`相反。
+- `@hasAndBelongsToMany` - 在被引用类型里面，外键以`${typeName}Ids`形式表示. 如果名称不一样，则使用`"as": X`参数来表示，这个是多对多的`@belongsToMany`相反。
 
 ```graphql
 type User {
