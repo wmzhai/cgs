@@ -16,12 +16,14 @@ $ cgs init <project-directory>
 ```
 ### 添加类型
 ```bash
+$ cd <project-directory>
 $ cgs add <path-to-schema.graphql>
 ```
 
 ### 由模板生成整个项目
 ```bash
-$ cgs add <inputDir> <outputDir>
+$ cd <project-directory>
+$ cgs add <inputDir> 
 ```
 
 ## 3. 开发
@@ -31,7 +33,6 @@ $ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
 $ npm link
 ```
-
 
 ## 4. Schema编写指南
 
