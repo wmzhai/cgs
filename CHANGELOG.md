@@ -1,5 +1,9 @@
 
 
+## 0.2.2 (March 2, 2017)
+
+* support complex plural names
+* vscode debug support with NodeJS v7.6+
 
 ## 0.2.1 (February 24, 2017)
 
