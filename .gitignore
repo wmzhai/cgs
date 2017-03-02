@@ -5,7 +5,6 @@ build
 *~
 npm-debug.log
 /.changelog
-.vscode/
 .idea/
 output/
 /hello

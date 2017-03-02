@@ -11,6 +11,7 @@ const babylonParser = {
   },
 };
 
+//返回实际类型，如果是数组或者NonNull，取出里面的类型
 function getBaseType(type) {
   if (type.kind === 'ListType' || type.kind === 'NonNullType') {
     return getBaseType(type.type);
