@@ -5,6 +5,14 @@ var babylon = require('babylon');
 
 const SCALAR_TYPE_NAMES = ['Int', 'Float', 'String', 'Boolean', 'ID'];
 
+function isScalarType(type) {
+  return SCALAR_TYPE_NAMES.includes(type.name.value);
+}
+
+function isScalarField(field) {
+  return SCALAR_TYPE_NAMES.includes(getBaseType(field.type).name.value);
+}
+
 const babylonParser = {
   parse(code) {
     return babylon.parse(code, { sourceType: 'module' });
@@ -25,10 +33,6 @@ function argumentsToObject(argumentsAst) {
     result[argument.name.value] = argument.value.value;
   });
   return result;
-}
-
-function isScalarField(field) {
-  return SCALAR_TYPE_NAMES.includes(getBaseType(field.type).name.value);
 }
 
 function generatePerField(type, generators) {
@@ -73,6 +77,5 @@ function templateToAst(template, replacements) {
 exports.templateToAst = templateToAst;
 exports.lcFirst = lcFirst;
 exports.getBaseType = getBaseType;
-exports.isScalarField = isScalarField;
+exports.isScalarType = isScalarType;
 exports.generatePerField = generatePerField;
-exports.SCALAR_TYPE_NAMES = SCALAR_TYPE_NAMES;

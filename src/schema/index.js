@@ -1,7 +1,7 @@
 var assert = require('assert');
 var graphql = require('graphql');
 var cloneDeep = require('lodash.clonedeep');
-var { SCALAR_TYPE_NAMES, lcFirst} = require('../utils');
+var { lcFirst, isScalarType } = require('../utils');
 
 module.exports = function (inputSchema) {
   // Check that the input looks like we expect -- a single ObjectType definition
@@ -39,7 +39,7 @@ module.exports = function (inputSchema) {
 
     if (possibleInputType.kind === 'NamedType') {
       let inputField;
-      if (SCALAR_TYPE_NAMES.includes(possibleInputType.name.value)) {
+      if (isScalarType(possibleInputType)) {
         inputField = field;
       } else {
         inputField = buildField(`${field.name.value}Id`, [], `ObjID${inputTypeModifier}`);
