@@ -1,0 +1,5 @@
+type Study {
+  scientist: User! @unmodifiable
+  title: String!
+  content: String!
+}

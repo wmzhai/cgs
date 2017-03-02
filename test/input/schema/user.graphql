@@ -3,6 +3,8 @@ type User {
   bio: String
 
   tweets: [Tweet!] @hasMany(as: "author")
+  studies: [Study!] @hasMany(as: "scientist")
+
   liked: [Tweet!] @belongsToMany
 
   following: [User!] @belongsToMany
