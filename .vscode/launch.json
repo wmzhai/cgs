@@ -7,10 +7,19 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动程序",
+      "name": "init",
       "program": "${workspaceRoot}/index.js",
-      "args": ["init" "output"],    
+      "args": ["init" "${workspaceRoot}/test/output"],    
       "cwd": "${workspaceRoot}",
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "add user",
+      "program": "${workspaceRoot}/index.js",
+      "args": ["add" "${workspaceRoot}/test/input/schema/user.graphql"],    
+      "cwd": "${workspaceRoot}/test/output",
       "sourceMaps": true
     },
     {
