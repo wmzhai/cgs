@@ -33,6 +33,7 @@ $ git clone https://github.com/wmzhai/cgs.git && cd cgs
 $ yarn install
 $ npm link
 ```
+*注意：仅在node版本7.6.0以上支持vscode调试*
 
 ## 4. Schema编写指南
 
