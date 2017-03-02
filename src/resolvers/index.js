@@ -1,13 +1,15 @@
 var fs = require('fs');
-var print = require('recast').print;
+var pluralize = require('pluralize');
+var { print }  = require('recast');
 var { templateToAst, lcFirst, generatePerField} = require('../utils');
 
 module.exports = function (inputSchema) {
   const type = inputSchema.definitions[0];
   const TypeName = type.name.value;
   const typeName = lcFirst(TypeName);
+  const typesName = pluralize(typeName); //复数类型
 
-  const ast = generators.base({ TypeName, typeName });
+  const ast = generators.base({ TypeName, typeName, typesName });
 
   // XXX: rather than hardcoding in array indices it would be less brittle to
   // walk the tree using https://github.com/benjamn/ast-types
@@ -43,8 +45,8 @@ function generateResolver(template) {
 }
 
 const generators = {
-  base({ typeName, TypeName }) {
-    return templateToAst(templates.base, { typeName, TypeName });
+  base({ typeName, TypeName, typesName }) {
+    return templateToAst(templates.base, { typeName, TypeName, typesName });
   },
   belongsTo: generateResolver(templates.fieldOfType),
   belongsToMany: generateResolver(templates.paginatedField),

@@ -5,7 +5,7 @@ const resolvers = {
     },
   },
   Query: {
-    typeNames(root, { lastCreatedAt, limit }, { TypeName }) {
+    typesName(root, { lastCreatedAt, limit }, { TypeName }) {
       return TypeName.all({ lastCreatedAt, limit });
     },
 

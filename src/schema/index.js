@@ -1,6 +1,7 @@
 var assert = require('assert');
 var graphql = require('graphql');
 var cloneDeep = require('lodash.clonedeep');
+var pluralize = require('pluralize')
 var { lcFirst, isScalarType } = require('../utils');
 
 module.exports = function (inputSchema) {
@@ -12,6 +13,7 @@ module.exports = function (inputSchema) {
   const type = outputSchema.definitions[0];
   const TypeName = type.name.value;
   const typeName = lcFirst(TypeName);
+  const typesName = pluralize(typeName); //复数类型
 
   const createInputFields = [];
   const updateInputFields = [];
@@ -60,7 +62,7 @@ module.exports = function (inputSchema) {
   type.fields.push(buildField('updatedAt', [], 'Float!'));
 
   const queryOneField = buildField(typeName, [idArgument()], TypeName);
-  const queryAllField = buildField(`${typeName}s`, paginationArguments(), `[${TypeName}!]`);
+  const queryAllField = buildField(`${typesName}`, paginationArguments(), `[${TypeName}!]`);
   outputSchema.definitions.push(
     buildTypeExtension(buildTypeDefinition('Query', [queryAllField, queryOneField]))
   );
