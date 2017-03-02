@@ -1,9 +1,7 @@
 var assert = require('assert');
 var graphql = require('graphql');
 var cloneDeep = require('lodash.clonedeep');
-var utils = require('../utils');
-var lcFirst = utils.lcFirst;
-var SCALAR_TYPE_NAMES = utils.SCALAR_TYPE_NAMES;
+var { SCALAR_TYPE_NAMES, lcFirst} = require('../utils');
 
 module.exports = function (inputSchema) {
   // Check that the input looks like we expect -- a single ObjectType definition

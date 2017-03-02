@@ -1,9 +1,6 @@
 var fs = require('fs');
 var print = require('recast').print;
-var utils = require('../utils');
-var templateToAst = utils.templateToAst;
-var lcFirst = utils.lcFirst;
-var generatePerField = utils.generatePerField;
+var { templateToAst, lcFirst, generatePerField} = require('../utils');
 
 module.exports = function (inputSchema) {
   const type = inputSchema.definitions[0];
