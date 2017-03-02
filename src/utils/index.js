@@ -59,13 +59,6 @@ function lcFirst(str) {
   return str[0].toLowerCase() + str.substring(1);
 }
 
-function ucFirst(str) {
-  return str[0].toUpperCase() + str.substring(1);
-}
-
-function readInput(path) {
-  return graphql.parse(fs.readFileSync(path, 'utf8'));
-}
 
 // Take a template, replacing each replacement.
 function templateToAst(template, replacements) {
@@ -77,12 +70,9 @@ function templateToAst(template, replacements) {
   return recast.parse(source, { parser: babylonParser });
 }
 
-exports.readInput = readInput;
 exports.templateToAst = templateToAst;
 exports.lcFirst = lcFirst;
-exports.ucFirst = ucFirst;
 exports.getBaseType = getBaseType;
-exports.argumentsToObject = argumentsToObject;
 exports.isScalarField = isScalarField;
 exports.generatePerField = generatePerField;
 exports.SCALAR_TYPE_NAMES = SCALAR_TYPE_NAMES;
