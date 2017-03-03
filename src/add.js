@@ -25,7 +25,7 @@ module.exports = function (inputSchemaFile) {
   
   fs.writeFileSync(path.join('schema', `${typeName}.graphql`), outputSchemaStr);
   fs.writeFileSync(path.join('resolvers', `${typeName}.js`), resolversStr);
-  fs.writeFileSync(path.join('model', `${TypeName}.js`), modelStr);
+  fs.writeFileSync(path.join('model', `${typeName}.js`), modelStr);
 
   fs.appendFileSync(path.join('schema', 'index.js'),
     `\ntypeDefs.push(requireGraphQL('./${typeName}.graphql'));\n`
@@ -37,7 +37,7 @@ module.exports = function (inputSchemaFile) {
   );
 
   fs.appendFileSync(path.join('model', 'index.js'),
-    `\nimport ${TypeName} from './${TypeName}';\n` +
+    `\nimport ${TypeName} from './${typeName}';\n` +
     `models.${TypeName} = ${TypeName};\n`
   );
 }
