@@ -1,5 +1,9 @@
 
 
+## 0.2.3 (March 3, 2017)
+
+* lowercase filenames for models
+
 ## 0.2.2 (March 2, 2017)
 
 * support complex plural names
